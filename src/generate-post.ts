@@ -1,10 +1,10 @@
-import GetPagamentosFavorecidosUseCase from "./use-cases/get-pagamentos-favorecidos";
+import { UseCaseFactory } from "./use-cases/factories/use-case-factory";
 import { ensureDirectoriesExist } from "./utils/ensure-dirs";
 
 export async function generatePost() {
   try {
     await ensureDirectoriesExist();
-    const useCase = new GetPagamentosFavorecidosUseCase();
+    const useCase = UseCaseFactory.createUseCase("pagamentos-favorecidos");
     await useCase.handle();
     console.log("Processo concluído com sucesso!");
   } catch (error) {
