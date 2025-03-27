@@ -1,23 +1,14 @@
-import type { Pagamento, Favorecido } from "./entities";
-import { processData } from "./use-cases/get-pagamentos-favorecidos";
-import { fetchData } from "./infra/http";
-import { saveHTML } from "./infra/files";
-import { generateImage } from "./infra/puppeteer";
-import { generateHTML } from "./infra/templates";
+import GetPagamentosFavorecidosUseCase from "./use-cases/get-pagamentos-favorecidos";
+import { ensureDirectoriesExist } from "./utils/ensure-dirs";
 
 export async function generatePost() {
   try {
-    // // Busca os dados
-    const data: Pagamento[] = await fetchData();
-    // // Processa os dados
-    const processedData: Favorecido[] = processData(data);
-    // // Gera um HTML com os dados
-    const html: string = generateHTML(processedData);
-    // // Salva um HTML com os dados
-    await saveHTML(html);
-    // // Gera imagem com base no HTML
-    await generateImage();
+    await ensureDirectoriesExist();
+    const useCase = new GetPagamentosFavorecidosUseCase();
+    await useCase.handle();
+    console.log("Processo concluído com sucesso!");
   } catch (error) {
     console.error("Erro ao gerar a imagem:", error);
+    process.exit(1);
   }
 }
