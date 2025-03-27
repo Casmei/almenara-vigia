@@ -1,0 +1,27 @@
+{
+  "name": "almenara-gastos-monitor",
+  "version": "1.0.0",
+  "description": "Sistema para monitorar e compartilhar gastos públicos da Prefeitura de Almenara",
+  "main": "index.ts",
+  "scripts": {
+    "start": "bun index.ts",
+    "dev": "bun --watch index.ts"
+  },
+  "dependencies": {
+    "@types/bun": "latest",
+    "@types/lodash": "^4.17.16",
+    "axios": "^1.8.4",
+    "croner": "^9.0.0",
+    "date-fns": "^4.1.0",
+    "envalid": "^8.0.0",
+    "handlebars": "^4.7.8",
+    "inquirer": "^12.5.0",
+    "instagram-private-api": "^1.46.1",
+    "lodash": "^4.17.21",
+    "puppeteer": "^24.4.0",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}
